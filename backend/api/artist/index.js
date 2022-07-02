@@ -1,14 +1,14 @@
-import express from 'express'
-import SongRuter from './Router.js'
-import SongController from './Controller.js'
-import { response } from '../../response/response.js'
-import { HttpStatusCode } from '../../response/httpcode.js'
+import ArtistController from './Controller.js'
+import ArtistRouter from './Router.js'
 import { DataJson } from '../../store/DataJson.js'
-import Song from '../../entity/Song.js'
+import Artist from '../../entity/Artist.js'
+import { HttpStatusCode } from '../../response/httpcode.js'
+import { response } from '../../response/response.js'
+import { validateCreateArtist } from './validate.js'
 
-export const songModule = () => {
-  const servicesSong = new DataJson()
-  const songControll = new SongController(servicesSong, Song)
-  const songRuter = new SongRuter(express.Router, songControll, response, HttpStatusCode)
-  return songRuter._router
+export const artistModule = (expresRouter) => {
+  const artistErvices = new DataJson()
+  const artistController = new ArtistController(artistErvices, Artist)
+  const artistRouter = new ArtistRouter(expresRouter, artistController, response, HttpStatusCode, validateCreateArtist)
+  return artistRouter._router
 }

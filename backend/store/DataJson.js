@@ -10,6 +10,7 @@ export class DataJson {
     const tables = {
       user: [],
       song: [],
+      artist: [],
       playlist: []
     }
     const items = this.readJsonFile()
