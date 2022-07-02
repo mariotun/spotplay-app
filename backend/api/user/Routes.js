@@ -9,10 +9,10 @@ class UserRouter {
   }
 
   registerRoutes () {
-    // this._router.get('/singUp', this.handleGetSong.bind(this))
+    this._router.get('/', this.handleGetUser.bind(this))
     this._router.post('/singup', this._chekUser, this.handleSingUp.bind(this))
     // this._router.put('/:id', this.handleUpdateSong.bind(this))
-    // this._router.delete('/', this.handleDeleteSong.bind(this)) */
+    this._router.delete('/:id', this.handleDeleteUser.bind(this))
   }
 
   handleSingUp (req, res) {
@@ -23,10 +23,10 @@ class UserRouter {
     this._response.success(req, res, result, this._httpcode.OK)
   }
 
-  handleGetSong (req, res) {
+  handleGetUser (req, res) {
     try {
-      const result = this._ctrl.getAllSong()
-      this._response.success(req, res, result, this._httpCode.ok)
+      const result = this._ctrl.getAllUser()
+      this._response.success(req, res, result, this._httpcode.OK)
       if (result.length === 0) {
         this._response.success(req, res, 'No hay canciones', this._httpCode.not_found)
       }
@@ -43,16 +43,17 @@ class UserRouter {
     this._response.success(req, res, result, this._httpcode.OK)
     // console.log(req)
     // res.send('soy el manejador de la ruta put/song')
-  }
-
-  handleDeleteSong (req, res) {
-    const song = req.body
-    // console.log('*****: ', song)
-    const result = this._ctrl.deleteSong(song)
-    this._response.success(req, res, result, this._httpcode.OK)
-    // console.log(req)
-    // res.send('soy el manejador de la ruta delete/song')
   } */
+
+  handleDeleteUser (req, res) {
+    try {
+      const paramUser = req.params
+      const result = this._ctrl.deleteUser(paramUser)
+      this._response.success(req, res, result, this._httpcode.OK)
+    } catch (error) {
+      this._response.error(req, res, error, this._httpCode.internal_server_error)
+    }
+  }
 }
 
 export default UserRouter

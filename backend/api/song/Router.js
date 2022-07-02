@@ -12,7 +12,7 @@ class SongRouter {
     this._router.get('/', this.handleGetSong.bind(this))
     this._router.post('/', this.handlePostSong.bind(this))
     this._router.put('/:id', this.handleUpdateSong.bind(this))
-    this._router.delete('/', this.handleDeleteSong.bind(this))
+    this._router.delete('/:id', this.handleDeleteSong.bind(this))
   }
 
   handleGetSong (req, res) {
@@ -41,7 +41,7 @@ class SongRouter {
   }
 
   handleDeleteSong (req, res) {
-    const song = req.body
+    const song = req.params
     // console.log('*****: ', song)
     const result = this._ctrl.deleteSong(song)
     this._response.success(req, res, result, this._httpcode.OK)

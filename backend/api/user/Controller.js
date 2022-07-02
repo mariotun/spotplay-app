@@ -18,8 +18,8 @@ class UserController {
     }
   }
 
-  getAllSong () {
-    const response = this._service.all('song')
+  getAllUser () {
+    const response = this._service.all('user')
     return response
   }
 
@@ -29,15 +29,12 @@ class UserController {
     // console.log('-----> parametro: ', param, ' body: ', body)
     // console.log(song)
     // return 'updated a song'
-  }
-
-  deleteSong (idSong) {
-    // const deleteSon = new this._entity(song)
-    const response = this._service.delete('song', idSong)
-    return response
-    // console.log(song)
-    // return 'deleted a song'
   } */
+
+  deleteUser (idUser) {
+    const response = this._service.delete('user', idUser)
+    return response
+  }
 }
 
 export default UserController

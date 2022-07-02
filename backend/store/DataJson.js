@@ -51,7 +51,7 @@ export class DataJson {
 
   delete (table, data) {
     const items = this.readJsonFile()
-    const newData = items[table].filter(tbl => tbl._id !== data.id)
+    const newData = items[table].filter(tbl => tbl._id !== parseInt(data.id))
     items[table] = newData
     this.writeJsonFile(items)
     return 'Data Deleted'
