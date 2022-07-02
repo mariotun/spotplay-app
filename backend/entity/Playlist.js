@@ -3,7 +3,6 @@ export class Playlist {
     this._id = null
     this._name = playlist.name
     this._avatar = playlist.avatar
-    this._creationDate = playlist.creationDate
     this._duration = playlist.duration
   }
 }
