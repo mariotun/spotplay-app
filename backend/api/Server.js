@@ -1,8 +1,7 @@
 import express from 'express'
-import { songModule } from './song/index.js'
 import cors from 'cors'
 import morgan from 'morgan'
-
+import { songModule } from './song/index.js'
 import { userModule } from './user/index.js'
 
 class Server {
@@ -24,7 +23,7 @@ class Server {
 
   setRoutes () {
     this._app.use('/api/v1/song', songModule())
-    this._app.use('/api/v1/user', userModule())
+    this._app.use('/api/v1/user', userModule(express.Router))
   }
 
   start () {
