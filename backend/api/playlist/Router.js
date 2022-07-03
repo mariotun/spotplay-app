@@ -20,13 +20,13 @@ class PlaylistRouter {
     if (result instanceof Error) {
       this._response.error(req, res, result, 201)
     }
-    this._response.success(req, res, result, this._httpcode.OK)
+    this._response.success(req, res, result, this._httpcode.CREATED)
   }
 
   handleGetPlaylist (req, res) {
     try {
       const result = this._ctrl.getAllPlaylist()
-      this._response.success(req, res, result, this._httpcode.OK)
+      this._response.success(req, res, result, this._httpcode.ACCEPTED)
       if (result.length === 0) {
         this._response.success(req, res, 'No hay Playlist creados', this._httpCode.not_found)
       }

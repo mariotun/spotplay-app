@@ -20,13 +20,13 @@ class ArtistRouter {
     if (result instanceof Error) {
       this._response.error(req, res, result, 201)
     }
-    this._response.success(req, res, result, this._httpcode.OK)
+    this._response.success(req, res, result, this._httpcode.CREATED)
   }
 
   handleGetArtist (req, res) {
     try {
       const result = this._ctrl.getAllArtist()
-      this._response.success(req, res, result, this._httpcode.OK)
+      this._response.success(req, res, result, this._httpcode.ACCEPTED)
       if (result.length === 0) {
         this._response.success(req, res, 'No hay artistas creados', this._httpCode.not_found)
       }
