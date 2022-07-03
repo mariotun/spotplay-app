@@ -6,12 +6,14 @@
   "main": "index.js",
   "scripts": {
     "test-entity": "mocha test/entity/*.spec.js",
+    "test-http": "mocha test/http/*.spec.js",
     "dev": "nodemon api/index.js"
   },
   "author": "mario",
   "license": "ISC",
   "devDependencies": {
     "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
     "mocha": "^10.0.0",
     "nodemon": "^2.0.18",
     "standard": "^17.0.0"
