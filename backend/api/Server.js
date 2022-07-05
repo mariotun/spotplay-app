@@ -1,10 +1,18 @@
 import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
+import swaggerUI from 'swagger-ui-express'
+import YAML from 'yamljs'
+
+// configuracion de paths
+import { fileURLToPath } from 'url'
+import { dirname, join } from 'path'
+
 import { songModule } from './song/index.js'
 import { userModule } from './user/index.js'
 import { artistModule } from './artist/index.js'
 import { playlistModule } from './playlist/index.js'
+import { authModule } from './auth/index.js'
 
 class Server {
   constructor (config) {
@@ -12,6 +20,8 @@ class Server {
     this._port = config.port
     this._hostname = config.hostname
     this._name = config.name
+    this._dirname = dirname(fileURLToPath(import.meta.url))
+    this._swaggerFile = YAML.load(join(dirname(fileURLToPath(import.meta.url)), '../docs/swagger.yaml'))
     this.setMiddlewares()
     this.setRoutes()
   }
@@ -28,6 +38,8 @@ class Server {
     this._app.use('/api/v1/user', userModule(express.Router))
     this._app.use('/api/v1/artist', artistModule(express.Router))
     this._app.use('/api/v1/playlist', playlistModule(express.Router))
+    this._app.use('/api/v1/auth', authModule(express.Router))
+    this._app.use('/api/v1/docs', swaggerUI.serve, swaggerUI.setup(this._swaggerFile))
   }
 
   start () {
