@@ -24,16 +24,20 @@ class UserController {
     return response
   }
 
-  /*  updateSong (param, body) {
-    const response = this._service.update('song', param, body)
+  getOneUser (idUser) {
+    const response = this._service.one('users', idUser)
     return response
-    // console.log('-----> parametro: ', param, ' body: ', body)
-    // console.log(song)
-    // return 'updated a song'
-  } */
+  }
+
+  updateUser (parametro, user) {
+    const updateUser = new this._entity(user)
+    updateUser.encryptPassword(user.password, this._hashPassword)
+    const response = this._service.update('users', parametro, updateUser)
+    return response
+  }
 
   deleteUser (idUser) {
-    const response = this._service.delete('user', idUser)
+    const response = this._service.delete('users', idUser)
     return response
   }
 }
