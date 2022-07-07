@@ -90,6 +90,27 @@ paths:
         404:
           description: 
           content: {}
+  /song:
+    get:
+      tags:
+      - Song
+      summary: get all songs
+      operationId: get songs
+    post:
+      tags:
+      - Song
+      summary: get all users
+      operationId: get users
+    put:
+      tags:
+      - Song
+      summary: get all users
+      operationId: get users
+    delete:
+      tags:
+      - Song
+      summary: get all users
+      operationId: get users
 
 
 

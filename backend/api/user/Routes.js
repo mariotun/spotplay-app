@@ -27,6 +27,7 @@ class UserRouter {
     try {
       const result = this._ctrl.getAllUser()
       this._response.success(req, res, result, this._httpcode.ACCEPTED)
+      console.log('handle-->', result)
       if (result.length === 0) {
         this._response.success(req, res, 'No hay canciones', this._httpCode.not_found)
       }

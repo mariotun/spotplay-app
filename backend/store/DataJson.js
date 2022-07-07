@@ -50,7 +50,7 @@ export class DataJson {
     return 'ok'
   }
 
-  delete (table, data) {
+  /* delete (table, data) {
     const items = this.readJsonFile()
     const newData = items[table].filter(tbl => tbl._id !== parseInt(data.id))
     items[table] = newData
@@ -64,6 +64,23 @@ export class DataJson {
     // const newData = items[table].filter(table => table !== param.id)
     console.log('>>>>> ', items[table]._id !== '1')
     // console.log('new: ', items)
+  } */
+
+  update (table, data) {
+    const items = this.readJsonFile()
+    const newItems = items[table].filter(item => item._id !== data._id)
+    newItems.push(data)
+    items[table] = newItems
+    this.writeJsonFile(items)
+    return data
+  }
+
+  delete (table, data) {
+    const items = this.readJsonFile()
+    const itemDelete = items[table].find(item => item._id === data)
+    itemDelete._status = 0
+    this.writeJsonFile(items)
+    return 'Delete item'
   }
 
   checkAge (dato, id) {
