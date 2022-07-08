@@ -48,7 +48,7 @@ export class DBMongo {
 
   async all (table) {
     try {
-      const result = await models[table].find()
+      const result = await models[table].find() // .populate('_idRole').populate('_idTypeCount')
       return result
     } catch (error) {
       console.log('ERR_FIND_DB: ', error)

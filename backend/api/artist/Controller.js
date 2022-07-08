@@ -14,18 +14,21 @@ class ArtistController {
     }
   }
 
-  getAllArtist () {
-    const response = this._service.all('artist')
+  async getAllArtist () {
+    const response = await this._service.all('artist')
     return response
   }
 
-  /*  updateSong (param, body) {
-    const response = this._service.update('song', param, body)
+  async getOneUser (idArtist) {
+    const response = await this._service.all('artist')
     return response
-    // console.log('-----> parametro: ', param, ' body: ', body)
-    // console.log(song)
-    // return 'updated a song'
-  } */
+  }
+
+  updateArtist (parametro, artist) {
+    const updateArtist = new this._entity(artist)
+    const response = this._service.update('artist', parametro, updateArtist)
+    return response
+  }
 
   deleteArtist (idArtist) {
     const response = this._service.delete('artist', idArtist)

@@ -13,7 +13,7 @@ export const helpers = {
     return jwt.sign({
       id: idUser
     }, config.jwt.secret, {
-      expiresIn: '1h'
+      expiresIn: '5Minutes'
     })
   },
   verifyToken: (token) => {

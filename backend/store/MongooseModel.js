@@ -6,8 +6,8 @@ const userSchema = new mongoose.Schema({
   _username: { type: String, required: true },
   _email: { type: String, required: true },
   _password: { type: String, required: true },
-  _role: [{ type: Schema.ObjectId, ref: 'Role' }],
-  _account: [{ type: Schema.ObjectId, ref: 'Account' }]
+  _idRole: { type: Schema.Types.ObjectId, ref: 'Role', required: true },
+  _idTypeCount: { type: Schema.Types.ObjectId, ref: 'Account', required: true }
 
 })
 
@@ -37,10 +37,10 @@ const artistSchema = new mongoose.Schema({
 const songSchema = new mongoose.Schema({
   _title: { type: String, required: true },
   _uri: { type: String, required: true },
-  _duration: { type: String, required: true },
+  _duration: { type: Number, required: true },
   _image: { type: String, required: true },
-  _artist: { type: String, required: true },
-  _gender: { type: String, required: true }
+  _idArtist: { type: Schema.Types.ObjectId, ref: 'Artist', required: true },
+  _idGender: { type: Schema.Types.ObjectId, ref: 'Gender', required: true }
 })
 
 const playlistSchema = new mongoose.Schema({
@@ -68,7 +68,7 @@ export const models = {
   role: roleModel,
   account: accountModel,
   gender: genderModel,
-  artitst: artistModel,
+  artist: artistModel,
   song: songModel,
   playlist: playlistModel,
   playlistsong: playlistsongModel

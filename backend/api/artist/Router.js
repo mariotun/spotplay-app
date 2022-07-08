@@ -11,7 +11,7 @@ class ArtistRouter {
   registerRoutes () {
     this._router.get('/', this.handleGetArtist.bind(this))
     this._router.post('/', this._chekArtist, this.handlePostArtist.bind(this))
-    // this._router.put('/:id', this.handleUpdateSong.bind(this))
+    this._router.put('/:id', this.handleUpdateArtist.bind(this))
     this._router.delete('/:id', this.handleDeleteArtist.bind(this))
   }
 
@@ -23,9 +23,9 @@ class ArtistRouter {
     this._response.success(req, res, result, this._httpcode.CREATED)
   }
 
-  handleGetArtist (req, res) {
+  async handleGetArtist (req, res) {
     try {
-      const result = this._ctrl.getAllArtist()
+      const result = await this._ctrl.getAllArtist()
       this._response.success(req, res, result, this._httpcode.ACCEPTED)
       if (result.length === 0) {
         this._response.success(req, res, 'No hay artistas creados', this._httpCode.not_found)
@@ -35,20 +35,15 @@ class ArtistRouter {
     }
   }
 
-  /* handleUpdateSong (req, res) {
-    const param = req.params
-    const body = req.body
-    // console.log(`parametro: ${param} body: ${body}`)
-    const result = this._ctrl.updateSong(param, body)
+  handleUpdateArtist (req, res) {
+    const result = this._ctrl.updateArtist(req.params, req.body)
     this._response.success(req, res, result, this._httpcode.OK)
-    // console.log(req)
-    // res.send('soy el manejador de la ruta put/song')
-  } */
+  }
 
   handleDeleteArtist (req, res) {
     try {
-      const paramUser = req.params
-      const result = this._ctrl.deleteArtist(paramUser)
+      const paramArtist = req.params
+      const result = this._ctrl.deleteArtist(paramArtist)
       this._response.success(req, res, result, this._httpcode.OK)
     } catch (error) {
       this._response.error(req, res, error, this._httpCode.internal_server_error)

@@ -35,7 +35,7 @@ class Server {
   }
 
   setRoutes () {
-    this._app.use('/api/v1/song', songModule())
+    this._app.use('/api/v1/song', songModule(express.Router))
     this._app.use('/api/v1/user', userModule(express.Router))
     this._app.use('/api/v1/artist', artistModule(express.Router))
     this._app.use('/api/v1/playlist', playlistModule(express.Router))
