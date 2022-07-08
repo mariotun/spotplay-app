@@ -64,6 +64,32 @@ export class DBMongo {
     }
   }
 
+  async findById (table, id) {
+    try {
+      const findById = await models[table].findById(id)
+      if (findById) {
+        return findById
+      }
+      return `no item of ${table}`
+    } catch (error) {
+      console.log(error)
+      return `no item of ${table}`
+    }
+  }
+
+  async findByAttribute (table, attribute, value) {
+    try {
+      const findByAttribute = await models[table].find({ [attribute]: value })
+      if (findByAttribute.length > 0) {
+        return findByAttribute
+      }
+      return `no item of ${table}`
+    } catch (error) {
+      console.log(error)
+      return `no item of ${table}`
+    }
+  }
+
   async update (table, param, data) {
     try {
       const result = await models[table].findByIdAndUpdate(param.id, data)
@@ -79,6 +105,41 @@ export class DBMongo {
       return result
     } catch (error) {
       console.log('ERR_FIND_BY_ID_DELETE_DB: ', error)
+    }
+  }
+
+  async searchSongTitleAndArtist (title, artist) { // no se ha probado el metodo aun
+    try {
+      const searchSong = await this._models.Songs.find({
+        _title: { $regex: title, $options: 'i' },
+        _artist: { $regex: artist, $options: 'i' }
+      })
+      if (searchSong.length > 0) {
+        return searchSong
+      }
+      return 'no item of Songs'
+    } catch (error) {
+      console.log(error)
+      return 'no item of Songs'
+    }
+  }
+
+  async searchSongString (search) {
+    try {
+      const searchSong = await this._models.Songs.find({ // no se ha probado el metodo aun
+        $or: [
+          { _title: { $regex: search, $options: 'i' } },
+          { _artist: { $regex: search, $options: 'i' } },
+          { _album: { $regex: search, $options: 'i' } }
+        ]
+      })
+      if (searchSong.length > 0) {
+        return searchSong
+      }
+      return 'no item of Songs'
+    } catch (error) {
+      console.log(error)
+      return 'no item of Songs'
     }
   }
 }

@@ -8,12 +8,15 @@ export default class AuthController {
 
   async authenticationUser (user) {
     try {
-      // const result = this._services.findByAtribute('user', '_username', user.username)
-      const result = await this._services.findByAtribute('users', '_username', user.username)
+      // const result = await this._services.findByAtribute('user', '_username', user.username)
+      // const result = await this._services.findById('user', id)
+      const result = await this._services.findByAttribute('user', '_username', user.username)
+      console.log('--->Controller: ', result)
       if (result !== null) {
-        const resltComparePassword = await this._comparePassword(user.password, result._password)
+        const resltComparePassword = this._comparePassword(user.password, result._password)
+        console.log('COMPARACION: ', resltComparePassword)
         if (resltComparePassword) {
-          const tokenUser = this._generateToken(result.id)
+          const tokenUser = this._generateToken(result._id)
           return new this._entity({
             state: true,
             username: result._username,

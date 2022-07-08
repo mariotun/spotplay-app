@@ -14,6 +14,7 @@ export default class AuthRoute {
   async handleSingin (req, res) {
     try {
       const result = await this._controller.authenticationUser(req.body)
+      console.log('.................> ', result)
       if (result._auth) {
         this._response.success(req, res, result, this._httpCode.OK)
       } else {
