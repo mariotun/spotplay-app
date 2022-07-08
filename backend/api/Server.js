@@ -13,6 +13,7 @@ import { userModule } from './user/index.js'
 import { artistModule } from './artist/index.js'
 import { playlistModule } from './playlist/index.js'
 import { authModule } from './auth/index.js'
+import { generalModule } from './general/index.js'
 
 class Server {
   constructor (config) {
@@ -39,6 +40,9 @@ class Server {
     this._app.use('/api/v1/artist', artistModule(express.Router))
     this._app.use('/api/v1/playlist', playlistModule(express.Router))
     this._app.use('/api/v1/auth', authModule(express.Router))
+    this._app.use('/api/v1/role', generalModule('role', express.Router))
+    this._app.use('/api/v1/account', generalModule('account', express.Router))
+    this._app.use('/api/v1/gender', generalModule('gender', express.Router))
     this._app.use('/api/v1/docs', swaggerUI.serve, swaggerUI.setup(this._swaggerFile))
   }
 

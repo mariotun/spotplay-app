@@ -2,6 +2,21 @@ import mongoose from 'mongoose'
 // import { config } from '../config/defaults.js'
 import { models } from './MongooseModel.js'
 
+/* function conexion () {
+  const url = 'mongodb+srv://Mario:mdbMario123@cluster-spotplay.pxqospw.mongodb.net/spotplay?retryWrites=true&w=majority'
+  const mongodb = async () => {
+    try {
+      const db = await mongoose.connect(url, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+      })
+      console.log(`-----> MongoDB connected: ${db.connection.host}`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  return mongodb
+} */
 const url = 'mongodb+srv://Mario:mdbMario123@cluster-spotplay.pxqospw.mongodb.net/spotplay?retryWrites=true&w=majority'
 const mongodb = async () => {
   try {
@@ -18,6 +33,7 @@ const mongodb = async () => {
 export class DBMongo {
   constructor () {
     mongodb()
+    // conexion()
   }
 
   async save (table, data) {

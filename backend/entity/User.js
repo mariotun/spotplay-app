@@ -15,7 +15,7 @@ export class User {
 
 export class Role {
   constructor (role) {
-    this._id = null
+    // this._id = null
     this._name = role.name
     this._description = role.description
   }
@@ -23,7 +23,7 @@ export class Role {
 
 export class AccountType {
   constructor (accountTipe) {
-    this._id = null
+    // this._id = null
     this._name = accountTipe.name
     this._description = accountTipe.description
   }

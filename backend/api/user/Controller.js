@@ -19,13 +19,13 @@ class UserController {
     }
   }
 
-  getAllUser () {
-    const response = this._service.all('user')
+  async getAllUser () {
+    const response = await this._service.all('user')
     return response
   }
 
-  getOneUser (idUser) {
-    const response = this._service.one('user', idUser)
+  async getOneUser (idUser) {
+    const response = await this._service.one('user', idUser)
     return response
   }
 

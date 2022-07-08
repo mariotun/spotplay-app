@@ -24,11 +24,11 @@ class UserRouter {
     this._response.success(req, res, result, this._httpcode.CREATED)
   }
 
-  handleGetUser (req, res) {
+  async handleGetUser (req, res) {
     try {
-      const result = this._ctrl.getAllUser()
+      const result = await this._ctrl.getAllUser()
       this._response.success(req, res, result, this._httpcode.ACCEPTED)
-      console.log('handle-->', result)
+      // console.log('handle-->', result)
       if (result.length === 0) {
         this._response.success(req, res, 'No hay usuarios', this._httpCode.not_found)
       }
@@ -37,9 +37,9 @@ class UserRouter {
     }
   }
 
-  handleGetOneUser (req, res) {
+  async handleGetOneUser (req, res) {
     try {
-      const result = this._ctrl.getOneUser(req.params)
+      const result = await this._ctrl.getOneUser(req.params)
       this._response.success(req, res, result, this._httpcode.ACCEPTED)
       console.log(result)
       if (result.length === 0) {
