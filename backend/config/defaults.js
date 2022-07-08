@@ -10,6 +10,9 @@ export const config = {
   },
   jwt: {
     secret: process.env.JWT_SECRET || 'secret'
+  },
+  dbMongo: {
+    uri: process.env.MONGO_URI // || 'mongodb://0.0.0.0:27017/app'
   }
   /* ,
     db:{
